@@ -25,6 +25,8 @@ public class CustomerController {
         log.info("New customer registration: {}", customerRegistrationRequest);
         Customer savedCustomer = customerService.registerCustomer(customerRegistrationRequest);
 
+        log.info("Saving customer {}", savedCustomer.getId());
+
         return ResponseEntity.ok(savedCustomer);
     }
 }

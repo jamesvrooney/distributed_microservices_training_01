@@ -2,10 +2,12 @@ package com.jamesvrooney.customer.services;
 
 import com.jamesvrooney.customer.model.Customer;
 import com.jamesvrooney.customer.model.CustomerRegistrationRequest;
+import com.jamesvrooney.customer.model.FraudCheckResponse;
 import com.jamesvrooney.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final RestTemplate restTemplate;
 
     @Override
     public Customer registerCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
@@ -25,6 +28,16 @@ public class CustomerServiceImpl implements CustomerService {
                 .build();
 
         Customer savedCustomer = customerRepository.save(customer);
+
+        final FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
+                "http://localhost:8081/api/v1/fraud-check/{customerId}",
+                FraudCheckResponse.class,
+                savedCustomer.getId()
+        );
+
+        if (fraudCheckResponse.isFraudster()) {
+            throw new IllegalStateException("Customer is a fraudster");
+        }
 
         return savedCustomer;
     }
