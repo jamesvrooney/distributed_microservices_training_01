@@ -1,4 +1,4 @@
-package com.jamesvrooney.clients.model;
+package com.jamesvrooney.clients.fraud.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

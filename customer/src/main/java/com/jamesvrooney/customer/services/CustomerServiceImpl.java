@@ -1,7 +1,7 @@
 package com.jamesvrooney.customer.services;
 
 import com.jamesvrooney.clients.fraud.FraudClient;
-import com.jamesvrooney.clients.model.FraudCheckResponse;
+import com.jamesvrooney.clients.fraud.model.FraudCheckResponse;
 import com.jamesvrooney.customer.model.Customer;
 import com.jamesvrooney.customer.model.CustomerRegistrationRequest;
 import com.jamesvrooney.customer.repository.CustomerRepository;

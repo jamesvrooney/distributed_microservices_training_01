@@ -1,6 +1,6 @@
 package com.jamesvrooney.fraud.controller;
 
-import com.jamesvrooney.clients.model.FraudCheckResponse;
+import com.jamesvrooney.clients.fraud.model.FraudCheckResponse;
 import com.jamesvrooney.fraud.service.FraudCheckService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
 package com.jamesvrooney.fraud.service;
 
-import com.jamesvrooney.clients.model.FraudCheckResponse;
+import com.jamesvrooney.clients.fraud.model.FraudCheckResponse;
 import com.jamesvrooney.fraud.model.FraudCheckHistory;
 import com.jamesvrooney.fraud.repository.FraudCheckHistoryRepository;
 import lombok.RequiredArgsConstructor;
