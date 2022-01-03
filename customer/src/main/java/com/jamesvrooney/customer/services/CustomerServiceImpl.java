@@ -3,7 +3,7 @@ package com.jamesvrooney.customer.services;
 import com.jamesvrooney.clients.fraud.FraudClient;
 import com.jamesvrooney.clients.fraud.model.FraudCheckResponse;
 import com.jamesvrooney.clients.notification.NotificationClient;
-import com.jamesvrooney.clients.notification.model.RegisterCustomerNotification;
+import com.jamesvrooney.clients.notification.model.NotificationRequest;
 import com.jamesvrooney.customer.model.Customer;
 import com.jamesvrooney.customer.model.CustomerRegistrationRequest;
 import com.jamesvrooney.customer.repository.CustomerRepository;
@@ -39,9 +39,11 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         notificationClient.saveNotification(
-                RegisterCustomerNotification.builder()
+                NotificationRequest.builder()
                         .customerId(savedCustomer.getId())
                         .message("New customer registered.")
+                        .sender("jamesvrooney")
+                        .customerEmail(customerRegistrationRequest.email())
                         .build()
         );
 

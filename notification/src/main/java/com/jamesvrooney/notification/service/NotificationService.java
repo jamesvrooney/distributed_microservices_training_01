@@ -1,7 +1,7 @@
 package com.jamesvrooney.notification.service;
 
-import com.jamesvrooney.clients.notification.model.RegisterCustomerNotification;
+import com.jamesvrooney.clients.notification.model.NotificationRequest;
 
 public interface NotificationService {
-    void saveNotification(RegisterCustomerNotification notification);
+    void saveNotification(NotificationRequest notification);
 }

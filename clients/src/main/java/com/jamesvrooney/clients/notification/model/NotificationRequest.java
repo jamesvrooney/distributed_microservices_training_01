@@ -11,7 +11,9 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterCustomerNotification {
+public class NotificationRequest {
     private String message;
     private UUID customerId;
+    private String customerEmail;
+    private String sender;
 }

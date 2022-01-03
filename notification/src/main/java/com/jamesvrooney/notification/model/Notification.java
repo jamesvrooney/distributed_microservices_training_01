@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -22,4 +23,7 @@ public class Notification {
 
     private String message;
     private UUID customerId;
+    private String customerEmail;
+    private String sender;
+    private LocalDateTime sentAt;
 }

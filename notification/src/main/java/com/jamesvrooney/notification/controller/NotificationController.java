@@ -1,6 +1,6 @@
 package com.jamesvrooney.notification.controller;
 
-import com.jamesvrooney.clients.notification.model.RegisterCustomerNotification;
+import com.jamesvrooney.clients.notification.model.NotificationRequest;
 import com.jamesvrooney.notification.service.NotificationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ public class NotificationController {
     private final NotificationService notificationService;
 
     @PostMapping
-    public void saveNotification(@RequestBody RegisterCustomerNotification registerCustomerNotification) {
+    public void saveNotification(@RequestBody NotificationRequest registerCustomerNotification) {
         log.info("Save new notification");
 
         notificationService.saveNotification(registerCustomerNotification);
