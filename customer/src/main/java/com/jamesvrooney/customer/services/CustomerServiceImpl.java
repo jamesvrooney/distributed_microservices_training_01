@@ -2,6 +2,8 @@ package com.jamesvrooney.customer.services;
 
 import com.jamesvrooney.clients.fraud.FraudClient;
 import com.jamesvrooney.clients.fraud.model.FraudCheckResponse;
+import com.jamesvrooney.clients.notification.NotificationClient;
+import com.jamesvrooney.clients.notification.model.NotificationRequest;
 import com.jamesvrooney.customer.model.Customer;
 import com.jamesvrooney.customer.model.CustomerRegistrationRequest;
 import com.jamesvrooney.customer.repository.CustomerRepository;
@@ -16,6 +18,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
     private final FraudClient fraudClient;
+    private final NotificationClient notificationClient;
 
     @Override
     public Customer registerCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
@@ -34,6 +37,15 @@ public class CustomerServiceImpl implements CustomerService {
         if (fraudCheckResponse.isFraudster()) {
             throw new IllegalStateException("Customer is a fraudster");
         }
+
+        notificationClient.saveNotification(
+                NotificationRequest.builder()
+                        .customerId(savedCustomer.getId())
+                        .message("New customer registered.")
+                        .sender("jamesvrooney")
+                        .customerEmail(customerRegistrationRequest.email())
+                        .build()
+        );
 
         return savedCustomer;
     }
